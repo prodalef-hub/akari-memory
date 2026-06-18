@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AKARI</title>
+<style>
+body{margin:0;background:#0b0b0b;color:white;font-family:sans-serif;overflow-x:hidden}
+.page{display:none;min-height:100vh;justify-content:center;align-items:center;flex-direction:column}
+.active{display:flex}
+h1{text-align:center;font-size:3rem}
+p{text-align:center;opacity:.8}
+button{background:#ff7a00;color:#fff;border:none;padding:16px 32px;border-radius:18px;font-size:1.1rem;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px;padding:30px}
+.card{height:160px;border-radius:22px;background:rgba(255,122,0,.12);backdrop-filter:blur(8px);cursor:pointer;transition:.3s}
+.card:hover{transform:translateY(-8px);box-shadow:0 0 30px rgba(255,122,0,.4)}
+.float{position:fixed;font-size:28px;opacity:.25;animation:f 12s linear infinite}
+@keyframes f{from{transform:translateY(100vh)}to{transform:translateY(-120px)}}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);justify-content:center;align-items:center}
+.modal img{max-width:92%;max-height:92%}
+.close{position:absolute;top:20px;right:30px;font-size:40px;color:white;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="float" style="left:8%">🥕</div>
+<div class="float" style="left:28%;animation-duration:16s">🐱</div>
+<div class="float" style="left:55%;animation-duration:14s">🥛</div>
+<div class="float" style="left:80%;animation-duration:18s">🐱</div>
+
+<section id="w" class="page active">
+<h1>سالاممم<br>AKARI (هویج پیر)</h1>
+<p>This place was made for Akari.</p>
+<button onclick="start()">Start</button>
+</section>
+
+<section id="g" class="page">
+<div class="grid" id="grid"></div>
+</section>
+
+<div id="m" class="modal">
+<span class="close" onclick="m.style.display='none'">&times;</span>
+<img id="img">
+</div>
+
+<script>
+function start(){w.classList.remove('active');g.classList.add('active');}
+let a=[];for(let i=1;i<=17;i++)a.push(i);
+a.sort(()=>Math.random()-0.5);
+a.forEach(n=>{
+ let d=document.createElement('div');
+ d.className='card';
+ d.onclick=()=>{m.style.display='flex';img.src='images/'+n+'.jpg';}
+ grid.appendChild(d);
+});
+</script>
+</body></html>
